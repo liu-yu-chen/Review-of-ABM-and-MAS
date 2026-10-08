@@ -9,7 +9,16 @@ This folder contains the reusable analysis and writing assets for the review
   `agent_based_modeling_review_revised_v4.docx`. The document visibly uses 21
   of them; the two additional files are retained because they are packaged in
   the DOCX and may be referenced by floating or hidden drawing elements.
-- `code/` contains only the core analysis notebooks: corpus enrichment and
+- `collection/` contains the core Web of Science and OpenAlex collection
+  components.
+- `process/` contains field enrichment, normalization, filtering, and corpus
+  assembly components.
+- `LLM/` contains corpus screening, topic/agent-type analysis, LLM-adoption
+  analysis, collaboration-network analysis, and plotting notebooks.
+- The review figures are in `figures/`. The original plotting notebooks are
+  stored in `LLM/` rather than a separate build folder.
+
+The core analysis includes corpus enrichment and
   screening, topic/agent-type analysis, LLM-adoption analysis, and plotting,
   plus collaboration-network analysis and plotting.
 

@@ -1,0 +1,25 @@
+{
+  "include_topic_name_phrases": [
+    "urban planning",
+    "city planning",
+    "town planning",
+    "regional planning",
+    "urban and regional planning",
+    "rural planning",
+    "urban design",
+    "urban development",
+    "rural development",
+    "urban studies",
+    "land use planning",
+    "spatial planning",
+    "housing policy",
+    "urban policy"
+  ],
+  "include_subfield_name_phrases": [
+    "urban studies",
+    "planning and development",
+    "regional and urban planning"
+  ],
+  "include_field_name_phrases": [],
+  "note": "This is a transparent, editable seed list for matching OpenAlex's own topic labels. Review data/selected_topics.csv before a full collection."
+}
