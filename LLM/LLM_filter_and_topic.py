@@ -9,8 +9,8 @@ from vllm import LLM, SamplingParams
 
 # Paths configuration
 INPUT_PATH = os.environ.get("ABM_INPUT_JSONL", "<INPUT_JSONL>")
-MODEL_PATH = "/hpc2hdd/home/yuchenl/models/Llama-4-Scout-17B-16E-Instruct"
-OUTPUT_DIR = "/hpc2hdd/home/yuchenl/jhaidata/term_analysis"
+MODEL_PATH = os.environ.get("LLM_MODEL_PATH", "<MODEL_PATH>")
+OUTPUT_DIR = os.environ.get("LLM_OUTPUT_DIR", "<OUTPUT_DIR>")
 OUTPUT_PATH = os.environ.get("ABM_OUTPUT_JSONL", "<OUTPUT_JSONL>")
 CHECKPOINT_PATH = os.environ.get("ABM_CHECKPOINT_JSONL", "<CHECKPOINT_JSONL>")
 
