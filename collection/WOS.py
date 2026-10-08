@@ -167,7 +167,7 @@ _CA_QUERY = ("TS=(" + " OR ".join(_wos_phrase(t) for t in CA_TERMS) + ")"
              " AND TS=(" + " OR ".join(CA_CONTEXT) + ")")
 
 # Third clause: drop the vocabularies that no longer mean agent-based modelling.
-_EXCLUDE_QUERY = " NOT TS=(" + " OR ".join(_wos_phrase(t) for t in EXCLUDE_TERMS) + ")"
+_EXCLUDE_QUERY = ""
 
 # Fourth clause: the listed authors' records, whatever their topic wording.
 # Author names contain a comma and a space, so they are always quoted.
