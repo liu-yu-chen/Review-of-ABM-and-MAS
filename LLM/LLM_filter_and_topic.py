@@ -8,11 +8,11 @@ from typing import Dict, List, Any
 from vllm import LLM, SamplingParams
 
 # Paths configuration
-INPUT_PATH = "/hpc2hdd/home/yuchenl/jhaidata/abm_filter_corpus.jsonl"
+INPUT_PATH = os.environ.get("ABM_INPUT_JSONL", "<INPUT_JSONL>")
 MODEL_PATH = "/hpc2hdd/home/yuchenl/models/Llama-4-Scout-17B-16E-Instruct"
 OUTPUT_DIR = "/hpc2hdd/home/yuchenl/jhaidata/term_analysis"
-OUTPUT_PATH = "/hpc2hdd/home/yuchenl/jhaidata/term_analysis/abm_filter_corpus_three_stage.jsonl"
-CHECKPOINT_PATH = "/hpc2hdd/home/yuchenl/jhaidata/term_analysis/abm_filter_corpus_three_stage_checkpoint.jsonl"
+OUTPUT_PATH = os.environ.get("ABM_OUTPUT_JSONL", "<OUTPUT_JSONL>")
+CHECKPOINT_PATH = os.environ.get("ABM_CHECKPOINT_JSONL", "<CHECKPOINT_JSONL>")
 
 LLAMA_FIELDS = [
     "llama_abm_is_abm",
