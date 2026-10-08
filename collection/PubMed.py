@@ -9,7 +9,7 @@ from tqdm import tqdm
 # Entrez configuration
 Entrez.email = "liuyc091502@outlook.com"
 Entrez.tool = "MyPubMedScript"
-Entrez.api_key = "4b7a8ea42459b858f98221f4348fcc673508"
+Entrez.api_key = os.environ.get("NCBI_API_KEY", "").strip()
 
 # Path configuration
 OUTPUT_FILE = "../database/pubmed.parquet"
