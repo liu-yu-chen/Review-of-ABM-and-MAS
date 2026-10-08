@@ -9,11 +9,9 @@ This folder contains the reusable analysis and writing assets for the review
   `agent_based_modeling_review_revised_v4.docx`. The document visibly uses 21
   of them; the two additional files are retained because they are packaged in
   the DOCX and may be referenced by floating or hidden drawing elements.
-- `code/` contains the principal notebooks and scripts used for corpus
-  analysis, collaboration-network analysis, LLM-related analysis, document
-  revision, and Overleaf project assembly.
-- `writing_source/` contains the LaTeX writing source and bibliography from
-  the existing Overleaf-ready project.
+- `code/` contains only the core analysis notebooks: corpus enrichment and
+  screening, topic/agent-type analysis, LLM-adoption analysis, and plotting,
+  plus collaboration-network analysis and plotting.
 
 ## Figure order in the revised DOCX
 
@@ -33,6 +31,6 @@ source-package assets but are not part of the visible inline figure sequence.
 ## Provenance
 
 The figures were extracted without recompression from the supplied DOCX.
-The code files were copied from the working ABM review project and are
+The notebooks were copied from the working ABM review project and are
 provided as research provenance; paths, local data locations, API credentials,
 and runtime-specific settings may require adjustment before reproduction.
