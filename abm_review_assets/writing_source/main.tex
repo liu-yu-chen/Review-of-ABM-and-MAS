@@ -1,0 +1,46 @@
+% !TeX program = xelatex
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=1in]{geometry}
+\usepackage{fontspec}
+\setmainfont{TeX Gyre Termes}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{caption}
+\usepackage{float}
+\usepackage[section]{placeins}
+\usepackage[bottom,hang]{footmisc}
+\usepackage{enumitem}
+\usepackage{microtype}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true,linkcolor=black,citecolor=black,urlcolor=blue}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.55em}
+\setcounter{secnumdepth}{2}
+\captionsetup{font=small,labelfont=bf}
+\pagestyle{empty}
+
+\title{Agent-Based Modeling: Research Trends, LLM Adoption, and Collaboration Networks}
+\author{}
+\date{A quantitative review of publications, 1972--2025}
+
+\begin{document}
+\maketitle
+\begin{abstract}
+\input{sections/abstract}
+\end{abstract}
+
+\input{sections/01_scope_and_methods}
+\input{sections/02_research_trends}
+\input{sections/03_llm_adoption}
+\input{sections/04_collaboration_networks}
+\input{sections/05_discussion}
+\input{sections/06_synthesis}
+\input{sections/07_conclusion}
+
+\section*{References}
+\bibliographystyle{apalike}
+\nocite{*}
+\bibliography{references}
+\end{document}
