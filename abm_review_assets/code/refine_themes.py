@@ -3,7 +3,7 @@ from docx import Document
 from docx.oxml import OxmlElement
 from docx.text.paragraph import Paragraph
 
-root = Path(r"D:\Literature-Research-Agent")
+root = Path(Path("<PROJECT_ROOT>"))
 doc = Document(root / "review_current.docx")
 
 def replace_exact_start(start, text):
@@ -63,3 +63,4 @@ table2._tbl.addprevious(break_p)
 out = root / "agent_based_modeling_review_revised_v2.docx"
 doc.save(out)
 print(out)
+

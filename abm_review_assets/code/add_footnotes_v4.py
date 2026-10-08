@@ -1,11 +1,11 @@
 from pathlib import Path
 import sys
 
-SKILL_SCRIPTS = Path(r"C:\Users\Administrator\.codex\plugins\cache\openai-primary-runtime\documents\26.904.11930\skills\documents\scripts")
+SKILL_SCRIPTS = Path(Path("<DOCX_SKILL_SCRIPTS>"))
 sys.path.insert(0, str(SKILL_SCRIPTS))
 from insert_note import insert_note
 
-path = Path(r"D:\ONE DRIVE_PERSONAL\OneDrive\文档\agent_based_modeling_review_revised_v4.docx")
+path = Path(Path("<INPUT_DOCX>"))
 staging = path.with_name("agent_based_modeling_review_revised_v4_notes.docx")
 
 notes = [
@@ -34,3 +34,4 @@ current.replace(path)
 for temp in temps[:-1]:
     temp.unlink(missing_ok=True)
 print(path)
+

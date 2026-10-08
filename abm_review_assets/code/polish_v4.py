@@ -4,8 +4,8 @@ from docx.oxml import OxmlElement
 from docx.text.paragraph import Paragraph
 import re
 
-SRC = Path(r"D:\ONE DRIVE_PERSONAL\OneDrive\文档\agent_based_modeling_review_revised_v3.docx")
-OUT = Path(r"D:\ONE DRIVE_PERSONAL\OneDrive\文档\agent_based_modeling_review_revised_v4.docx")
+SRC = Path(Path("<INPUT_DOCX>"))
+OUT = Path(Path("<INPUT_DOCX>"))
 doc = Document(SRC)
 
 def edit_start(prefix, replacement):
@@ -188,3 +188,4 @@ for p in doc.paragraphs:
 # Preserve existing headers/footers untouched; add no header/footer content.
 doc.save(OUT)
 print(OUT)
+

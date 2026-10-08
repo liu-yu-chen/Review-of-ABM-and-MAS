@@ -8,9 +8,9 @@ from docx.oxml.ns import qn
 from docx.text.paragraph import Paragraph
 from docx.table import Table
 
-SOURCE = Path(r"D:\ONE DRIVE_PERSONAL\OneDrive\文档\agent_based_modeling_review_revised_v4.docx")
-ROOT = Path(r"D:\Literature-Research-Agent\overleaf_abm_project")
-ARCHIVE = Path(r"D:\Literature-Research-Agent\overleaf_agent_based_modeling_review.zip")
+SOURCE = Path(Path("<INPUT_DOCX>"))
+ROOT = Path(Path("<OVERLEAF_PROJECT>"))
+ARCHIVE = Path(Path("<OVERLEAF_ZIP>"))
 if ROOT.exists():
     shutil.rmtree(ROOT)
 (ROOT / "sections").mkdir(parents=True)
@@ -346,3 +346,4 @@ with ZipFile(ARCHIVE, "w", ZIP_DEFLATED) as z:
         if f.is_file():
             z.write(f, f.relative_to(ROOT).as_posix())
 print(f"Created {ARCHIVE} with {figure_count} figures and {len(section_files)+1} TeX parts")
+

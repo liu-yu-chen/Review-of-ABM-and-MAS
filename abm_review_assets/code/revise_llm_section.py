@@ -3,7 +3,7 @@ from docx import Document
 from docx.text.paragraph import Paragraph
 from docx.oxml import OxmlElement
 
-root = Path(r"D:\Literature-Research-Agent")
+root = Path(Path("<PROJECT_ROOT>"))
 doc = Document(root / "llm_current.docx")
 
 def para_before(anchor, text, style="Normal"):
@@ -81,3 +81,4 @@ eval_heading.text = "3.5 An evaluative framework for LLM-enabled ABM"
 out = root / "agent_based_modeling_review_revised_v3.docx"
 doc.save(out)
 print(out)
+

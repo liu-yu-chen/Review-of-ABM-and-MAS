@@ -3,7 +3,7 @@ from zipfile import ZipFile, ZIP_DEFLATED
 from lxml import etree
 import os
 
-path = Path(r"D:\ONE DRIVE_PERSONAL\OneDrive\文档\agent_based_modeling_review_revised_v4.docx")
+path = Path(Path("<INPUT_DOCX>"))
 tmp = path.with_name("agent_based_modeling_review_revised_v4_refined.tmp.docx")
 W = "http://schemas.openxmlformats.org/wordprocessingml/2006/main"
 NS = {"w": W}
@@ -112,3 +112,4 @@ with ZipFile(path, "r") as zin:
 
 os.replace(tmp, path)
 print(path)
+
