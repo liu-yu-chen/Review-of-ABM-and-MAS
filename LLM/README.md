@@ -11,8 +11,9 @@ to make every decision at once:
 1. **ABM relevance screening**: decide whether the title and abstract contain
    sufficient evidence of agent-based or individual-based modelling.
 2. **Structured classification**: assign a controlled topic category and
-   preserve a short evidence field. The model must use only the supplied title
-   and abstract and must not infer unsupported methods, locations, or findings.
+   determine whether a large language model is actually used in the research.
+   The output also records the primary LLM role. Mere mentions of GPT, LLMs,
+   or generative AI do not count as use.
 3. **Fine-grained topic analysis**: assign standardized secondary topics and a
    small set of informative keywords only for records that pass screening.
 
@@ -28,9 +29,8 @@ repository.
 
 ## Files
 
-- `LLM_filter_and_topic.py`: staged screening and topic-analysis prompts.
-- `deepseek.py`: DeepSeek classification workflow with checkpointing and JSON
-  validation.
+- `deepseek.py`: DeepSeek ABM/topic classification, LLM-use detection, role
+  classification, checkpointing, and JSON validation.
 - `ABM_LLM_visualization_v9.ipynb`: topic, agent-type, LLM-adoption, and trend
   visualisations.
 - `ABM_collaboration_network.ipynb`: co-authorship network analysis and plots.
