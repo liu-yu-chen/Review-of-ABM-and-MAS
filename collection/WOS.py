@@ -87,6 +87,8 @@ SOFTWARE_TERMS = [
 ]
 
 ALL_KEYWORDS = CORE_STEMS + RELATED_TERMS + SOFTWARE_TERMS
+CA_TERMS = []
+CA_CONTEXT = []
 
 # ---------------------------------------------------------------------------
 # Author-targeted collection
