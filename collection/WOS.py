@@ -64,7 +64,7 @@ BATCH_PAGES = 24
 CORE_STEMS = [
     "agent-based", "agent based", "individual-based", "individual based",
     "agent-oriented", "agent oriented", "multiagent",
-    "agent simulation", "agent simulations", "agent model", "agent models",
+    "agent simulation*", "agent model*",
     "individual-level", "individual level",
 ]
 RELATED_TERMS = [
@@ -85,37 +85,6 @@ SOFTWARE_TERMS = [
     "epimodel", "agentpy", "agents.jl", "agentscript",
     "jade", "jason", "spade", "sarl", "simudyne",
 ]
-
-# ---------------------------------------------------------------------------
-# Urban / GIS / spatial-simulation terms
-#
-# Added because the original query required an ABM term in the topic field, so
-# urban modellers whose papers say "cellular automata", "urban simulation" or
-# "land use model" instead of "agent-based" were systematically missed.
-# Measured on WoS: AU=("Batty, M") returns 448 records, but the corpus held 6.
-#
-# Bare "land use change" is deliberately NOT included: it returns ~35k records
-# dominated by remote-sensing and land-cover mapping, almost none agent-based.
-# ---------------------------------------------------------------------------
-URBAN_TERMS = [
-    "urban simulation*", "urban model*", "urban growth model*", "urban analytic*",
-    "city simulation*", "urban scaling", "urban land use",
-    "land use simulation*", "land use change model*", "land use model*",
-    "traffic simulation*", "pedestrian simulation*", "crowd simulation*",
-    "mobility simulation*", "travel demand model*",
-    "spatial microsimulation*", "geosimulation*", "activity-based model*",
-    "spatial agent*", "residential segregation model*",
-]
-
-# Cellular automata is ABM's closest sibling and the main urban modelling
-# method, but the bare phrase returns 21,590 records mostly in physics and
-# biology. Constraining it to an urban or spatial context drops it to 5,744.
-# One stem replaces the two written-out forms: "cellular automat*" covers both
-# automata and automaton, at the cost of also catching the rare misspelling
-# "cellular automation" - which the context clause and stage 5 remove again.
-CA_TERMS = ["cellular automat*"]
-CA_CONTEXT = ["urban", "city", "cities", "land use", "regional", "spatial",
-              "geograph*", "metropolitan", "suburban"]
 
 ALL_KEYWORDS = CORE_STEMS + RELATED_TERMS + SOFTWARE_TERMS
 
