@@ -152,32 +152,6 @@ AUTHOR_TERMS = [
     "Hommes, C", "Kirman, A",
 ]
 
-# ---------------------------------------------------------------------------
-# Excluded vocabulary
-#
-# These phrases are deliberately kept OUT of the corpus. They have drifted away
-# from agent-based modelling: multi-agent *systems* research is middleware,
-# negotiation and web services, and the LLM-agent family is a different
-# literature again. Neither belongs in a review of agent-based modelling.
-#
-# This clause is not optional. "multi-agent simulation" and "multi-agent model"
-# contain the adjacent words "agent simulation" / "agent model", so those
-# records arrive through CORE_STEMS even when no multi-agent keyword is listed.
-# The only way to keep them out is to say so explicitly. Bare "multi-agent
-# simulation" is left alone on purpose: it is genuine ABM vocabulary.
-#
-# process/hard_drop.py carries the same phrases as its rule C, so records that
-# reach the corpus from PubMed, DBLP or an earlier collection run are removed
-# there as well, and land in process/stage5_excluded_terms.csv.
-# ---------------------------------------------------------------------------
-EXCLUDE_TERMS = [
-    "multi-agent system*", "multiagent system*", "multi agent system*",
-    "multi-agent framework*", "multi-agent architecture*",
-    "multi-agent learning", "multi-agent reinforcement learning",
-    "large language model agent*", "llm agent*", "llm-based agent*",
-]
-
-
 def _wos_phrase(term):
     """Quote terms containing spaces/hyphens/dots so WoS matches them as exact phrases."""
     if any(ch in term for ch in " -."):
