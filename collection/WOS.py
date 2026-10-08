@@ -62,11 +62,17 @@ BATCH_PAGES = 24
 # The stem list below replaces 50 written-out terms with 38 stems and covers
 # slightly more ground than the old list did.
 CORE_STEMS = [
-    "agent-based", "agent based", "agentbased",
-    "individual-based", "individual based",
-    "agent-oriented",
-    "agent simulation*", "agent model*",
-    "individual level",
+    "agent-based", "agent based", "individual-based", "individual based",
+    "agent-oriented", "agent oriented", "multiagent",
+    "agent simulation", "agent simulations", "agent model", "agent models",
+    "individual-level", "individual level",
+]
+RELATED_TERMS = [
+    "social simulation", "microsimulation", "micro-simulation", "micro simulation",
+    "population simulation", "population-based simulation", "activity-based",
+    "activity based", "complex adaptive system", "opinion dynamics",
+    "computational social science", "computational sociology", "artificial society",
+    "artificial societies", "artificial life", "heterogeneous agent", "heterogeneous agents",
 ]
 
 # Named toolkits. Only names distinctive enough not to collide with an ordinary
@@ -75,7 +81,9 @@ CORE_STEMS = [
 # and every record they brought in was deleted again at stage 5.
 SOFTWARE_TERMS = [
     "netlogo", "repast", "mason", "gama", "matsim", "mesa",
-    "anylogic", "cormas", "starlogo*",
+    "anylogic", "flame", "cormas", "ascape", "starlogo",
+    "epimodel", "agentpy", "agents.jl", "agentscript",
+    "jade", "jason", "spade", "sarl", "simudyne",
 ]
 
 # ---------------------------------------------------------------------------
@@ -109,7 +117,7 @@ CA_TERMS = ["cellular automat*"]
 CA_CONTEXT = ["urban", "city", "cities", "land use", "regional", "spatial",
               "geograph*", "metropolitan", "suburban"]
 
-ALL_KEYWORDS = CORE_STEMS + SOFTWARE_TERMS + URBAN_TERMS
+ALL_KEYWORDS = CORE_STEMS + RELATED_TERMS + SOFTWARE_TERMS
 
 # ---------------------------------------------------------------------------
 # Author-targeted collection
@@ -193,13 +201,12 @@ _AUTHOR_QUERY = "AU=(" + " OR ".join(f'"{a}"' for a in AUTHOR_TERMS) + ")"
 
 # Parenthesised so the NOT applies to all three positive branches, and so the
 # author branch cannot leak past the exclusion.
-KEYWORDS_QUERY = (f"(({_BASE_QUERY}) OR ({_CA_QUERY}) OR ({_AUTHOR_QUERY}))"
-                  f"{_EXCLUDE_QUERY}")
+KEYWORDS_QUERY = _BASE_QUERY
 
 # Bump this whenever KEYWORDS_QUERY changes: the checkpoint stores it, and a
 # mismatch makes every year re-fetch. Without it, years already marked complete
 # under the old query would be skipped and the new terms never retrieved.
-QUERY_VERSION = 4
+QUERY_VERSION = 5
 
 os.makedirs(os.path.dirname(OUTPUT_PATH), exist_ok=True)  #
 
