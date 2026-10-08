@@ -7,7 +7,7 @@ from Bio import Entrez
 from tqdm import tqdm
 
 # Entrez configuration
-Entrez.email = "liuyc091502@outlook.com"
+Entrez.email = os.environ.get("NCBI_EMAIL", "your.email@example.com").strip()
 Entrez.tool = "MyPubMedScript"
 Entrez.api_key = os.environ.get("NCBI_API_KEY", "").strip()
 
