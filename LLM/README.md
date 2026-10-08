@@ -11,6 +11,7 @@ to make every decision at once:
 1. **ABM relevance screening**: decide whether the title and abstract contain
    sufficient evidence of agent-based or individual-based modelling.
 2. **Structured classification**: assign a controlled topic category and
+   identify the dominant agent category and standardized `agent_type`, and
    determine whether a large language model is actually used in the research.
    The output also records the primary LLM role. Mere mentions of GPT, LLMs,
    or generative AI do not count as use.

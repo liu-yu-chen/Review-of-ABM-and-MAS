@@ -236,17 +236,18 @@ SYSTEM_PROMPT = (
     "systems, computational social science, artificial intelligence, and "
     "large language model research.\n\n"
     "You will classify scientific papers using ONLY the title and abstract.\n\n"
-    "Return a JSON object with exactly four fields:\n"
+    "Return a JSON object with exactly five fields:\n"
     '1. "topic": primary research topic\n'
     '2. "agent": dominant simulated agent category\n'
-    '3. "llm_used": whether a large language model is actually used (0 or 1)\n'
-    '4. "llm_role": the primary role of the LLM\n\n'
+    '3. "agent_type": standardized agent type label for the modeled entities\n'
+    '4. "llm_used": whether a large language model is actually used (0 or 1)\n'
+    '5. "llm_role": the primary role of the LLM\n\n'
     "TOPIC TAXONOMY:\n" + TOPIC_TAXONOMY.strip() + "\n\n"
     "AGENT TAXONOMY:\n" + AGENT_TAXONOMY.strip() + "\n\n"
     "LLM ROLE TAXONOMY:\n" + LLM_ROLE_TAXONOMY.strip() + "\n\n"
     "CLASSIFICATION RULES:\n"
     "1. Select exactly ONE primary topic.\n"
-    "2. Select exactly ONE dominant agent category.\n"
+    "2. Select exactly ONE dominant agent category and copy its code to agent_type.\n"
     "3. Use only information supported by the title and abstract.\n"
     "4. Do not infer unsupported information.\n"
     "5. An LLM counts as used only when it actually participates in the "
@@ -274,7 +275,7 @@ SYSTEM_PROMPT = (
     "15. Do not output explanations.\n"
     "16. Do not output markdown.\n"
     "17. Return valid JSON only.\n"
-    '18. Return exactly: {"topic":"T06","agent":"A11","llm_used":1,'
+    '18. Return exactly: {"topic":"T06","agent":"A11","agent_type":"A11","llm_used":1,'
     '"llm_role":"L03"}\n'
 )
 
@@ -526,7 +527,7 @@ def coerce_code(value: Any, prefix: str, valid: set[str]) -> str:
 def parse_classification(content: str) -> dict:
     data = extract_json_object(content)
 
-    missing = [f for f in ("topic", "agent", "llm_used", "llm_role")
+    missing = [f for f in ("topic", "agent", "agent_type", "llm_used", "llm_role")
                if f not in data]
     if missing:
         raise ValueError(f"missing field(s): {missing}")
@@ -543,12 +544,15 @@ def parse_classification(content: str) -> dict:
 
     topic = coerce_code(data["topic"], "T", VALID_TOPICS)
     agent = coerce_code(data["agent"], "A", VALID_AGENTS)
+    agent_type = coerce_code(data["agent_type"], "A", VALID_AGENTS)
+    if agent_type != agent:
+        raise ValueError("agent_type must match agent")
     llm_role = coerce_code(data["llm_role"], "L", VALID_ROLES)
 
     if llm_used == 0:
         llm_role = "L01"
 
-    return {"topic": topic, "agent": agent,
+    return {"topic": topic, "agent": agent, "agent_type": agent_type,
             "llm_used": llm_used, "llm_role": llm_role}
 
 
@@ -839,6 +843,8 @@ def merge_results_to_parquet() -> None:
     df["abm_topic_label"] = column_of("topic", TOPIC_LABELS)
     df["agent_category"] = column_of("agent")
     df["agent_category_label"] = column_of("agent", AGENT_LABELS)
+    df["agent_type"] = column_of("agent_type")
+    df["agent_type_label"] = column_of("agent_type", AGENT_LABELS)
     df["llm_used"] = column_of("llm_used")
     df["llm_role"] = column_of("llm_role")
     df["llm_role_label"] = column_of("llm_role", LLM_ROLE_LABELS)
@@ -862,7 +868,8 @@ def merge_results_to_parquet() -> None:
     print(f"\noutput: {OUTPUT_PARQUET}")
     print(f"rows:   {len(df):,}")
     print("added columns: abm_topic, abm_topic_label, agent_category, "
-          "agent_category_label, llm_used, llm_role, llm_role_label")
+          "agent_category_label, agent_type, agent_type_label, llm_used, "
+          "llm_role, llm_role_label")
 
     classified = df["abm_topic"].notna().sum()
     if classified:
